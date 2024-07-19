@@ -1,6 +1,7 @@
 #ifndef COUT_HPP
 #define COUT_HPP
 
+
 #include <ostream>
 #include <type_traits>
 #include <utility>
