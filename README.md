@@ -14,7 +14,6 @@ ju::cout << "hello world\n";
 ```
 ### Function-style printing
 ```cpp
-复制
 ju::cout("hello ", "world\n");
 int val{ 3 };
 ju::cout("val: ", val, "\n");
