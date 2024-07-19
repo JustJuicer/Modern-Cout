@@ -1,4 +1,4 @@
-# Modern C++ Standard Output  Library
+# Modern C++ Output Library
 Modern cout is a single-header library in C++20 that provides a convenient and fast way to output data, with overloaded support for most standard library types.
 
 # Environment
