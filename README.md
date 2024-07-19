@@ -1,5 +1,5 @@
 # 现代C++ 标准输出拓展库
-print 库是一个单头文件的库，提供了方便快速的输出方式
+cout 库是一个单头文件的库，提供了方便快速的输出方式
 # 环境
 需要C++20标准
 # 示例
@@ -69,18 +69,15 @@ struct iterable {
         using difference_type = ptrdiff_t;
         auto operator*() const { return a; }
         auto& operator++() {
-            a--;
+            --a;
             return *this;
         }
         auto& operator++(int) {
-            a--;
+            --a;
             return *this;
         }
         bool operator==(iterator iter) const {
-            if (a > 0) {
-                return false;
-            }
-            return true;
+            return a > 0 ? false : true;
         }
         inline static int a = 10;
     };
@@ -104,7 +101,7 @@ struct S{
         return "struct S";
     }
 };
-
+using namespace ju;
 int main() {
     coutln(S{});
     // output struct S
@@ -128,11 +125,17 @@ int main() {
 
 ```cpp
 using namespace std;
-coutln << vector{vector{1, 2, 3}, 
-                vector{4, 5, 6}, 
-                vector{7, 8, 9}};
+using namespace ju;
+coutln << vector{ vector{1, 2, 3}, 
+                  vector{4, 5, 6}, 
+                  vector{7, 8, 9} };
 // output: 
 //         [[1 2 3] 
 //          [4 5 6] 
 //          [7 8 9]]
+```
+
+### 取消重载std类型输出重载
+```cpp
+#define NO_STD_TYPE_OVERLOAD
 ```
