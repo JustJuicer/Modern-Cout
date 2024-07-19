@@ -1,53 +1,53 @@
-# 现代C++ 输出库
-Modern cout 库是C++20一个单头文件的库，提供了方便快速的输出方式 \
-与对大部分标准库类型的重载
-# 环境
-需要C++20标准
-# 示例
-以下是使用示例
-## 打印
-### 标准库通用打印方式
+# Modern C++ Output Library
+Modern cout is a single-header library in C++20 that provides a convenient and fast way to output data, with overloaded support for most standard library types.
+
+# Environment
+Requires C++20 standard.
+
+# Examples
+Below are some usage examples.
+
+# Printing
+### Standard library's generic printing method
 ```cpp
 ju::cout << "hello world\n";   
 ```
-### 函数风格的打印
-
+### Function-style printing
 ```cpp
 ju::cout("hello ", "world\n");
 int val{ 3 };
 ju::cout("val: ", val, "\n");
 ```
 
-### 换行与颜色
+### Line Breaks and Colors
+
 ```cpp
 using namespace ju;
 
 coutln("auto break"); 
 
-cred("red, 红色输出\n");
+cred("red\n");
 cred << "red\n";
 
-cgreen("green, 绿色输出\n");
+cgreen("green\n");
 cgreen << "green\n";
 
-cblue("blue, 蓝色输出\n");
+cblue("blue\n");
 cblue << "blue\n";
 
-// 支持用operator<<输出
+// Supports output using operator<<
 // cxxx << "...";
 ```
-
-### 标准库类输出重载
-
+### Output Overloads for Standard Library Classes
 ```cpp
 using namespace ju;
 coutln(std::vector{1, 2, 3, 4});
 // output [1, 2, 3, 4]
 
-coutln(make_tuple("first", "second", 1, 2.5));
+coutln(std::make_tuple("first", "second", 1, 2.5));
 // output (first, second, 1, 2.5)
 
-coutln(make_pair("char*",2.5));
+coutln(std::make_pair("char*",2.5));
 // output (char*, 2.5)
 
 std::optional<int> option;
@@ -58,12 +58,10 @@ std::optional<int> option1{4};
 coutln(option1);
 // output 4
 ```
+### Output Overloads for Iterable Objects
+#### Custom Iterable Object
+For custom classes that satisfy std::ranges::viewable_range and do not have a conversion to string, cout will iterate and output the elements.
 
-
-### 可迭代对象输出重载
-#### 自定义可迭代对象
-自定义类在满足std::ranges::viewable_range且无转换为string时
-cout 迭代输出元素
 ```cpp
 struct iterable {
     struct iterator {
@@ -91,11 +89,9 @@ int main(){
     coutln(i);
     // output [10 9 8 7 6 5 4 3 2 1]
 }
-
-
 ```
-### 自定义重载字符串转换接口
-#### 自定义重载toString接口
+### Custom Overloaded String Conversion Interfaces
+#### Custom toString Overload
 ```cpp
 struct S{
     std::string toString(){
@@ -108,8 +104,9 @@ int main() {
     // output struct S
 }
 ```
-#### 自定义重载operator<<
-重载你自定义的类的输出流
+#### Custom operator<< Overload
+Overload the output stream for your custom class.
+
 ```cpp
 struct S{
     int a{ 5 };
@@ -122,9 +119,9 @@ int main() {
     //output a = 5
 }
 ```
+### Multi-Dimensional Range Output
+ju::cout supports recursively outputting multi-dimensional nested arrays.
 
-### 多维range输出
-ju::cout 支持递归的输出多维嵌套的数组
 ```cpp
 using namespace std;
 using namespace ju;
@@ -136,8 +133,7 @@ coutln << vector{ vector{1, 2, 3},
 //          [4 5 6] 
 //          [7 8 9]]
 ```
-
-### 取消重载std类型输出重载
+### Disabling Overloads for Standard Types
 ```cpp
 #define NO_STD_TYPE_OVERLOAD
 ```
