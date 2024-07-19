@@ -1,19 +1,16 @@
-#ifndef PRINT_HPP
-#define PRINT_HPP
+#ifndef COUT_HPP
+#define COUT_HPP
 
-#include <ios>
-#include <optional>
 #include <ostream>
-#include <tuple>
 #include <type_traits>
 #include <utility>
 #ifndef JU_NAMESPACE_BEGIN
-    #define JU_NAMESPACE_BEGIN  namespace ju {
-    #define JU                  ::ju::
-    #define JU_NAMESPACE_END   }
+#define JU_NAMESPACE_BEGIN  namespace ju {
+#define JU                  ::ju::
+#define JU_NAMESPACE_END    }
 #else
-    #define JU                  
-    #define JU_NAMESPACE_END    }
+#define JU                  
+#define JU_NAMESPACE_END    }
 #endif
 #ifndef BUILD_IN_MODULE
 #define EXPORT
@@ -39,11 +36,13 @@ concept adl_stream = requires(T& t, _STD_ ostream& os) {
     { os << t } -> _STD_ convertible_to<_STD_ ostream&>;
 };
 
+EXPORT
 template <typename T>
 concept mem_to_string = requires(T& t) {
     { t.toString() } -> _STD_ convertible_to<_STD_ string>;
 };
 
+EXPORT
 template <typename T>
 concept adl_to_string = requires(T& t) {
     { toString(t) } -> _STD_ convertible_to<_STD_ string>;
@@ -214,7 +213,7 @@ inline namespace _access {
         _STD_ string_view COLOR = COLOR_GREEN;
     };
 }
-
+EXPORT
 inline namespace _Cpo {
     inline constexpr _access::_Cout     cout{};
     inline constexpr _access::_Coutln   coutln{};
@@ -276,7 +275,9 @@ JU_NAMESPACE_END
 
 
 #ifndef NO_STD_TYPE_OVERLOAD
-
+#include <tuple>
+#include <optional>
+EXPORT
 namespace std {
     template<typename T>
     ostream& operator<<(ostream& os, optional<T>& option){
@@ -310,4 +311,5 @@ namespace std {
 }
 
 #endif
+
 #endif
