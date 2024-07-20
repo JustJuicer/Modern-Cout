@@ -58,7 +58,10 @@ concept print_able =
     _STD_ convertible_to<_STD_ decay_t<T>, _STD_ string>;
 
 
-
+/**
+ * @brief   transform the obj to string    
+ *          won't transform range to string
+ */         
 EXPORT
 template <print_able T>
 /*constexpr*/ _STD_ string to_string(T&& obj) {
@@ -83,11 +86,8 @@ requires(!_STD_ convertible_to<T, _STD_ string> &&
          !_STD_ convertible_to<T, _STD_ string_view>)
 _STD_ string range_format(T&& range, bool need_delim = false, size_t depth = 0) {
     _STD_ string res;
-
     res.push_back('[');
-
     bool is_first = false;
-
     for (auto&& ele : range) {
         if (is_first && need_delim)
             res += ", ";
