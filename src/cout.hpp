@@ -221,6 +221,9 @@ inline namespace _Cpo {
     inline constexpr _access::_Red      cred{};
     inline constexpr _access::_Green    cgreen{};
     inline constexpr _access::_Blue     cblue{};
+    /**
+     * @brief rout won't break line and cover previous output
+     */
     inline constexpr _access::_Rout     rout{};
     inline constexpr _access::_Log      log{};
 };
