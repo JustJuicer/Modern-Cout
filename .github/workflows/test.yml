@@ -7,5 +7,4 @@ jobs:
         - run: cmake --version
         - run: pwd
         - run: ls
-        - run: cd test && cmake -B build
-        - run: ls
+        - run: cd test && cmake -B build && cmake --build build && cmake --build build --target run
