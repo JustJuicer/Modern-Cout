@@ -3,9 +3,8 @@ jobs:
     job_linux:
         runs-on: ubuntu-latest
         steps:
-        - run: pwd
-        - run: ls
+        - run: cmake --version
     job_windows:
         runs-on: windows-latest
         steps:
-        - run: node --version
+        - run: cmake --version
