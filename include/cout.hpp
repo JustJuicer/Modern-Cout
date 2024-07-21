@@ -25,6 +25,9 @@
 #define EXPORT export
 #endif
 #define _STD_ ::std::
+#ifndef _STD_OUT
+#define _STD_OUT _STD_ cout
+#endif
 JU_NAMESPACE_BEGIN
 constexpr _STD_ string_view COLOR_RESET = "\033[0m";
 constexpr _STD_ string_view COLOR_GREEN = "\033[32m";
@@ -148,17 +151,17 @@ inline namespace _access {
     template <typename Derived>
     struct _Out_base{
         auto& flush() const {
-            _STD_ cout.flush();
+            _STD_OUT.flush();
             return *static_cast<const Derived* const>(this);
         }
         auto fill() const {
-            return _STD_ cout.fill();
+            return _STD_OUT.fill();
         }
         auto fill(char ch) const{
-            return _STD_ cout.fill(ch);
+            return _STD_OUT.fill(ch);
         }
         void clear() const{
-            _STD_ cout.clear();
+            _STD_OUT.clear();
         }
     };
 
@@ -167,38 +170,38 @@ inline namespace _access {
         template<typename ...Args>
         auto& operator()(Args&&... args) const{
             const auto& self = *static_cast<const Derived* const>(this);
-            return (((_STD_ cout << self.COLOR) << ... << _STD_ forward<Args>(args)) << COLOR_RESET);
+            return (((_STD_OUT << self.COLOR) << ... << _STD_ forward<Args>(args)) << COLOR_RESET);
         }
     };
     struct _Cout : _Out_base<_Cout>{
         template<typename ...Args>
         auto& operator()(Args&&... args) const {
-            return (_STD_ cout << ... << _STD_ forward<Args>(args));
+            return (_STD_OUT << ... << _STD_ forward<Args>(args));
         }
     };
     struct _Coutln : _Out_base<_Coutln>{
         template<typename ...Args>
         auto& operator()(Args&&... args) const {
-            return (_STD_ cout << ... << _STD_ forward<Args>(args)) << '\n';
+            return (_STD_OUT << ... << _STD_ forward<Args>(args)) << '\n';
         }
     };
     struct _Log : _Out_base<_Log>{
         template<typename ...Args>
         auto& operator()(Args&&... args) const {
 #ifdef DEBUG
-            return (_STD_ cout << ... << _STD_ forward<Args>(args));
+            return (_STD_OUT << ... << _STD_ forward<Args>(args));
 #else       
-            return _STD_ cout;
+            return _STD_OUT;
 #endif
         }
     };
     struct _Rout : _Out_base<_Rout>{
         template<typename ...Args>
         auto& operator()(Args&&... args) const {
-            // _STD_ cout.flush();
-            _STD_ cout << "\r\033[K";
-            auto& os = (_STD_ cout << ... << _STD_ forward<Args>(args));
-            _STD_ cout.flush();
+            // _STD_OUT.flush();
+            _STD_OUT << "\r\033[K";
+            auto& os = (_STD_OUT << ... << _STD_ forward<Args>(args));
+            _STD_OUT.flush();
             return os;
         }
     };
