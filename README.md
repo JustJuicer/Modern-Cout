@@ -1,4 +1,8 @@
 # 现代C++ 输出库
+
+![License](https://img.shields.io/github/license/jujinqian162/Modern-Cout)
+
+
 Modern cout 库是C++20一个单头文件的库，提供了方便快速的输出方式 \
 与对大部分标准库类型的重载
 # 环境
