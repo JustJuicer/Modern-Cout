@@ -1,6 +1,25 @@
-#define CATCH_CONFIG_MAIN
+#include <sstream>
+#include <string>
 #include "catch.hpp"
+#define _STD_OUT gss
+std::stringstream gss;
+#include "cout.hpp"
 
-TEST_CASE("cout test"){
-	REQUIRE(1 == 1);
+void clear(std::stringstream& ss){
+	ss.str("");
+	ss.clear();
+}
+
+TEST_CASE("print test"){
+	using namespace  ju;
+	SECTION("println"){
+		clear(gss);
+		println("_context_");
+		REQUIRE(gss.str() == "_context_\n");
+	}
+	SECTION("print"){
+		clear(gss);
+		print("_context_");
+		REQUIRE(gss.str() == "_context_");
+	}
 }

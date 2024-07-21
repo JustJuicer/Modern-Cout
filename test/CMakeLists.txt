@@ -11,9 +11,9 @@ endif()
 
 project(testing)
 message("source dir: " ${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp CATCH.cpp)
 
 add_test(NAME ${PROJECT_NAME}
         COMMAND ${PROJECT_NAME}
