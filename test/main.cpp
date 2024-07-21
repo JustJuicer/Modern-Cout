@@ -3,5 +3,4 @@
 
 TEST_CASE("cout test"){
 	REQUIRE(1 == 1);
-
 }

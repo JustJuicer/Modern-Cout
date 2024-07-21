@@ -9,12 +9,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()  
 
-project(testing)
-message("source dir: " ${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/src)
+project(main)
 
-add_executable(${PROJECT_NAME} main.cpp)
-
-add_test(NAME ${PROJECT_NAME}
-        COMMAND ${PROJECT_NAME}
-)
+enable_testing()
+add_subdirectory(test)
