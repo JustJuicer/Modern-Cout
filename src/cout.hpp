@@ -218,6 +218,8 @@ EXPORT
 inline namespace _Cpo {
     inline constexpr _access::_Cout     cout{};
     inline constexpr _access::_Coutln   coutln{};
+    inline constexpr _access::_Cout     print{};
+    inline constexpr _access::_Coutln   println{};
     inline constexpr _access::_Red      cred{};
     inline constexpr _access::_Green    cgreen{};
     inline constexpr _access::_Blue     cblue{};
