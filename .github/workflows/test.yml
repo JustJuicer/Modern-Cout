@@ -3,8 +3,7 @@ jobs:
     job_linux:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v4
         - run: cmake --version
-    job_windows:
-        runs-on: windows-latest
-        steps:
-        - run: cmake --version
+        - run: pwd
+        - run: cd test
