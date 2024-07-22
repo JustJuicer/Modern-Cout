@@ -9,8 +9,9 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()  
 
-project(main)
+project(printing)
+message("source dir: " ${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-enable_testing()
-add_subdirectory(test/catch)
-add_subdirectory(test/print)
+add_executable(${PROJECT_NAME} main.cpp)
+add_custom_target(run COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
