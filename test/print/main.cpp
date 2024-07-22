@@ -9,5 +9,5 @@ int main(){
     cblue("blue\n");
     cout("to cover");
     rout("cover\n");
-    // coutln("vector: ", std::vector{1, 2, 3, 4, 5});
+    coutln("vector: ", std::vector{1, 2, 3, 4, 5});
 }
