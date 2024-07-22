@@ -1,3 +1,4 @@
+#include <iostream>
 #include <sstream>
 #include <string>
 #include "catch.hpp"
@@ -9,9 +10,9 @@ void clear(std::stringstream& ss){
 	ss.str("");
 	ss.clear();
 }
+using namespace ju;
 
 TEST_CASE("print test"){
-	using namespace  ju;
 	SECTION("println"){
 		clear(gss);
 		println("_context_");
@@ -23,3 +24,6 @@ TEST_CASE("print test"){
 		REQUIRE(gss.str() == "_context_");
 	}
 }
+
+
+

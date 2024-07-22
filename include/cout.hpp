@@ -200,6 +200,7 @@ inline namespace _access {
         auto& operator()(Args&&... args) const {
             // _STD_OUT.flush();
             _STD_OUT << "\r\033[K";
+            // _STD_OUT << "\r";
             auto& os = (_STD_OUT << ... << _STD_ forward<Args>(args));
             _STD_OUT.flush();
             return os;
