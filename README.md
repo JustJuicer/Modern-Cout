@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/jujinqian162/Modern-Cout)
 ![Build Status](https://github.com/jujinqian162/Modern-Cout/actions/workflows/cmake-multi-platform.yml/badge.svg)
-
+![Release](https://img.shields.io/github/v/release/jujinqian162/Modern-Cout)
 Modern cout 库是C++20一个单头文件的库，提供了方便快速的输出方式 \
 与对大部分标准库类型的重载
 # 环境
