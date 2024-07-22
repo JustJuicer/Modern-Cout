@@ -9,7 +9,7 @@ int main(){
     cblue("blue\n");
     cout("to cover");
     rout("cover\n");
-    if constexpr(__GNUC__ >= 12){
+    #if __GNUC__ >= 12
         coutln("vector: ", std::vector{1, 2, 3, 4, 5});
-    }
+    #endif
 }
