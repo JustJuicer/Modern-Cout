@@ -269,7 +269,7 @@ namespace detail{
     }
 
     template<typename T>
-    _STD_ ostream& operator_optional(_STD_ ostream& os, T& option){
+    _STD_ ostream& operator_optional(_STD_ ostream& os, T&& option){
         if (option.has_value()){
             os << option.value();
         } else {
