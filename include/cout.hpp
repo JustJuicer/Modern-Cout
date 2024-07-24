@@ -273,7 +273,7 @@ namespace detail{
         if (option.has_value()){
             os << option.value();
         } else {
-            os << COLOR_RED << "null" << COLOR_RESET;
+            os << "null";
         }
         return os;
     }
