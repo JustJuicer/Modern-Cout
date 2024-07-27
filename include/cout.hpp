@@ -195,6 +195,18 @@ inline namespace _access {
 #endif
         }
     };
+
+    struct _Logln : _Out_base<_Logln>{
+        template<typename ...Args>
+        auto& operator()(Args&&... args) const {
+#ifdef DEBUG
+            return ((_STD_OUT << ... << _STD_ forward<Args>(args)) << '\n');
+#else       
+            return _STD_OUT;
+#endif
+        }
+    };
+
     struct _Rout : _Out_base<_Rout>{
         template<typename ...Args>
         auto& operator()(Args&&... args) const {
@@ -232,6 +244,7 @@ inline namespace _Cpo {
      */
     inline constexpr _access::_Rout     rout{};
     inline constexpr _access::_Log      log{};
+    inline constexpr _access::_Logln    logln{};
 };
 
 EXPORT
@@ -320,6 +333,9 @@ namespace std {
     }
 }
 
+#define _STRING(x) #x
+#define LOGVAR(var) ju::logln(_STRING(var)," = ", var)
+#define PRTVAR(var) ju::coutln(_STRING(var), " = ", var)
 #endif
 
 #endif
