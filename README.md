@@ -7,23 +7,36 @@
 Modern cout 库是C++20一个单头文件的库，提供了方便快速的输出方式 \
 与对大部分标准库类型的重载
 # 环境
-需要C++20标准， gcc最低版本12
+1.c++ 标准：**C++20标准**
+2.编译器要求： gcc最低版本**10**， clang最低版本**12**，msvc v19.30 VS17.0
 # 示例
 以下是使用示例
 ## 打印
 ### 标准库通用打印方式
 ```cpp
-ju::cout << "hello world\n";   
+ju::cout << "hello world\n";  
+ju::print << "hello world\n";
 ```
 ### 函数风格的打印
 
 ```cpp
 ju::cout("hello ", "world\n");
+ju::print("hello ", "world\n");
 int val{ 3 };
 ju::cout("val: ", val, "\n");
 ```
 
+### 宏
+```cpp
+int var = 4;
+PRTVAR(var);
+// output: var = 4
+LOGVAR(var); // 仅当定义DEBUG宏时打印
+// output: var = 4 
+```
+
 ### 换行与颜色
+方便的使用多种颜色输出
 ```cpp
 using namespace ju;
 
@@ -42,8 +55,22 @@ cblue << "blue\n";
 // cxxx << "...";
 ```
 
-### 标准库类输出重载
+### 多维range输出
+支持递归的输出多维嵌套的数组，符合range概念并无法转为string类型的可迭代对象将遍历打印如下
+```cpp
+using namespace std;
+using namespace ju;
+coutln << vector{ vector{1, 2, 3}, 
+                  vector{4, 5, 6}, 
+                  vector{7, 8, 9} };
+// output: 
+//         [[1 2 3] 
+//          [4 5 6] 
+//          [7 8 9]]
+```
 
+### 标准库类输出重载
+提供对tuple， pair， optional等类型的输出重载，可通过宏关闭重载
 ```cpp
 using namespace ju;
 coutln(std::vector{1, 2, 3, 4});
@@ -67,7 +94,7 @@ coutln(option1);
 
 ### 可迭代对象输出重载
 #### 自定义可迭代对象
-自定义类在满足std::ranges::viewable_range且无转换为string时
+自定义类在满足std::ranges::range且无转换为string时
 cout 迭代输出元素
 ```cpp
 struct iterable {
@@ -126,20 +153,6 @@ int main() {
     coutln(S{});
     //output a = 5
 }
-```
-
-### 多维range输出
-ju::cout 支持递归的输出多维嵌套的数组
-```cpp
-using namespace std;
-using namespace ju;
-coutln << vector{ vector{1, 2, 3}, 
-                  vector{4, 5, 6}, 
-                  vector{7, 8, 9} };
-// output: 
-//         [[1 2 3] 
-//          [4 5 6] 
-//          [7 8 9]]
 ```
 
 ### 取消重载std类型输出重载
