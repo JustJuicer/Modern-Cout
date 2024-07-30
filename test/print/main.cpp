@@ -19,7 +19,5 @@ int main(){
     coutln("right value optional: ", std::optional<const char*>());
 
     cgreen("optional green: ", op, "\n");
-    #if __GNUC__ >= 12
-        coutln("vector: ", std::vector{1, 2, 3, 4, 5});
-    #endif
+    coutln("vector: ", std::vector{1, 2, 3, 4, 5});
 }

@@ -84,7 +84,7 @@ template <print_able T>
 }
 
 EXPORT
-template <_STD_ ranges::viewable_range T>
+template <_STD_ ranges::range T>
 requires(!_STD_ convertible_to<T, _STD_ string> &&
          !_STD_ convertible_to<T, _STD_ string_view>)
 _STD_ string range_format(T&& range, bool need_delim = false, size_t depth = 0) {
@@ -127,7 +127,7 @@ concept string_able =
      _STD_ convertible_to<_STD_ decay_t<T>, _STD_ string>);
 
 EXPORT
-template <_STD_ ranges::viewable_range R>
+template <_STD_ ranges::range R>
 requires (!string_able<R>)    
 _STD_ ostream& operator<<(_STD_ ostream& s, R&& rng)
 requires(!_STD_ convertible_to<R, _STD_ string> 
