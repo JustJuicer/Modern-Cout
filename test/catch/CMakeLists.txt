@@ -9,12 +9,22 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()  
 
+find_package(Catch2)
+if (NOT Catch2_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+        Catch2 
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG devel 
+    )  
+    FetchContent_MakeAvailable(Catch2)
+endif()
+
 project(testing)
-message("source dir: " ${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(${PROJECT_NAME} main.cpp CATCH.cpp)
-
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} Catch2::Catch2WithMain)
 add_test(NAME ${PROJECT_NAME}
         COMMAND ${PROJECT_NAME}
 )
