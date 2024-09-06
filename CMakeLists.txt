@@ -44,7 +44,7 @@ target_include_directories(cout PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-# set_target_properties(cout PROPERTIES PUBLIC_HEADER "cout/lib2.h")
+# set_target_properties(cout PROPERTIES PUBLIC_HEADER include/cout.hpp)
 install(TARGETS cout
     EXPORT cout-targets
     PUBLIC_HEADER DESTINATION include
@@ -54,15 +54,16 @@ install(TARGETS cout
 )
 #use this if you want to install cout directory to install-path/include but not single header
 # install(DIRECTORY  ${CMAKE_SOURCE_DIR}/include/cout DESTINATION include)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/cout.hpp
+    DESTINATION include
+)
 install(EXPORT cout-targets
     NAMESPACE cout::
     FILE cout-config.cmake
     DESTINATION lib/cmake/cout
 )
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 enable_testing()
 add_subdirectory(test/catch)
