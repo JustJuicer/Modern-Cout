@@ -1,7 +1,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "catch.hpp"
+#include "catch2/catch_test_macros.hpp"
+
 #define _STD_OUT gss
 std::stringstream gss;
 #include "cout.hpp"
